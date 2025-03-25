@@ -1,27 +1,46 @@
-import placeholder from './images/placeholder1.png'
-import placeholder2 from './images/placeholder3.png'
-function Iamgeloader(props)
-{
-    var category = props.category;
-    if (category == 1)
-    {
-    return(
-        <>
-            <img src={placeholder2} alt='placeholdder2' height={100}/>
-            <img src={placeholder2} alt='placeholdder2' height={100}/>
-            <img src={placeholder2} alt='placeholdder2' height={100}/>
-        
-        </>)}
-        else{
-            return(
-                <>
-                <img src={placeholder} alt="Logo" height={100}/>
-                <img src={placeholder} alt="Logo2" height={100}/>
-                <img src={placeholder} alt="Logo3" height={100}/>
-                </>
-            )
-        }
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
+const ImageLoader = (props) => {
+  const category = props.category;
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-}
-export default Iamgeloader
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(`https://picsum.photos/v2/list?page=${category}&limit=10`);
+        setImages(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, [category]);
+
+  if (loading) {
+    return <div>Ładowanie...</div>;
+  }
+
+  if (error) {
+    return <div>Błąd: {error}</div>;
+  }
+
+  return (
+    <div>
+      <div>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img src={image.download_url} alt={`Obrazek ${index}`} height='100'/>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ImageLoader;

@@ -1,10 +1,24 @@
 import './App.css';
-import Iamgeloader from './imageloader';
+import CategoryPicker from './CategoryPicker';
+import Iamgeloader from './ImageLoader';
+import React, { useState } from 'react'; 
 
 function App() {
+  const [category, setCategory] = useState(17); 
+  const handleCategoryChange = (newCategory) => {
+    setCategory(newCategory); 
+  }; 
+  const handleImageLoaderChange = (newCategory) => {
+    console.log(newCategory);
+  };
+
   return (
     <>
-    <Iamgeloader category="1"/>
+    <CategoryPicker
+        category={category}
+        onValueChange={handleCategoryChange}
+      />
+    <Iamgeloader category={category} onValueChange={handleImageLoaderChange}/>
     </>
   );
 }
