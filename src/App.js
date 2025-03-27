@@ -1,6 +1,6 @@
 import './App.css';
-import CategoryPicker from './CategoryPicker';
-import Iamgeloader from './ImageLoader';
+import CategoryPicker from './CategoryPicker.jsx';
+import Iamgeloader from './ImageLoader.jsx';
 import React, { useState } from 'react'; 
 
 function App() {
