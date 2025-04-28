@@ -10,7 +10,7 @@ const ImageLoader = (props) => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get(`https://picsum.photos/v2/list?page=${category}&limit=10`);
+        const response = await axios.get(`https://picsum.photos/v2/list?page=${category}&limit=12   `);
         setImages(response.data);
         setLoading(false);
       } catch (err) {
@@ -35,7 +35,7 @@ const ImageLoader = (props) => {
       <div>
         {images.map((image, index) => (
           <div key={index}>
-            <img src={image.download_url} alt={`Obrazek ${index}`} height='100'/>
+            <img src={image.download_url} alt={`Obrazek ${index}`}/>
           </div>
         ))}
       </div>

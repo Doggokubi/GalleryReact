@@ -4,7 +4,7 @@ import Iamgeloader from './ImageLoader.jsx';
 import React, { useState } from 'react'; 
 
 function App() {
-  const [category, setCategory] = useState(17); 
+  const [category, setCategory] = useState(1); 
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory); 
   }; 
@@ -14,11 +14,11 @@ function App() {
 
   return (
     <>
+    <Iamgeloader category={category} onValueChange={handleImageLoaderChange}/>
     <CategoryPicker
         category={category}
         onValueChange={handleCategoryChange}
       />
-    <Iamgeloader category={category} onValueChange={handleImageLoaderChange}/>
     </>
   );
 }

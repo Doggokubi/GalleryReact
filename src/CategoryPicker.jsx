@@ -1,15 +1,15 @@
+let i = 1;
 const CategoryPicker = ({onValueChange }) => {
-      const selectCategoryNotebook = () => {
-        onValueChange(1);
+      const selectPreviewCategory = () => {
+        onValueChange(i--);
       };
-      const selectCategorySummerVibe = () => {
-        onValueChange(2);
+      const selectNextCategory = () => {
+        onValueChange(i++);
       };
   return (
-    <div>
-    <a href="#" onClick={selectCategoryNotebook}>Kategoria Laptop</a>
-    <a href="#" onClick={selectCategorySummerVibe}>Kategoria Lato</a>
-    <a href="#" onClick={selectCategoryNotebook}>Kategoria Kino</a>
+    <div id="pagination">
+    <a  href="#" onClick={selectPreviewCategory}>Poprzednia</a>
+    <a href="#" onClick={selectNextCategory}>Następna</a>
     </div>
   );
 };
